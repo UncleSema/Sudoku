@@ -14,6 +14,7 @@ void GameBoard::fillBoard(const size_t &difficulty)
     const std::string fileName = "sudoku/"+std::to_string(difficulty) + ".txt";
     QFile file(fileName.c_str());
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << ("We cannot open the file " + fileName).c_str();
         throw 1;
     }
 
@@ -34,10 +35,10 @@ void GameBoard::fillBoard(const size_t &difficulty)
     m_defaultBoard = m_board;
 }
 
-size_t GameBoard::getValue(const size_t &index)
+int GameBoard::getValue(const size_t &index)
 {
     size_t x = getX(index), y = getY(index);
-    return m_board[x][y];
+    return static_cast<int>(m_board[x][y]);
 }
 
 void GameBoard::setValue(const size_t &index, const size_t &newValue)
@@ -93,6 +94,7 @@ size_t GameBoard::getY(const size_t &index)
     return index%dimensions;
 }
 
-constexpr size_t GameBoard::getDimensions() {
-    return dimensions;
+int GameBoard::getDimensions()
+{
+    return static_cast<int>(dimensions);
 }

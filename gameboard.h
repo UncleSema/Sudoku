@@ -5,6 +5,7 @@
 #include <vector>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 class GameBoard : public QObject
 {
@@ -12,12 +13,12 @@ class GameBoard : public QObject
 public:
     GameBoard(QObject *parent = nullptr);
 
-    Q_INVOKABLE size_t getValue(const size_t &index);
+    Q_INVOKABLE int getValue(const size_t &index);
     Q_INVOKABLE const QString getColor(const size_t &index);
     Q_INVOKABLE void setValue(const size_t &index, const size_t &newValue);
     Q_INVOKABLE bool isValueCorrect(const size_t &index);
     Q_INVOKABLE bool isValueDefault(const size_t &index);
-    Q_INVOKABLE static constexpr size_t getDimensions();
+    Q_INVOKABLE int getDimensions();
 
 private:
     std::vector<std::vector<size_t>> m_board;

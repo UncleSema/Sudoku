@@ -25,3 +25,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     gameboard.h
+
+DISTFILES += \
+    sudoku/0.txt \
+    sudoku/1.txt \
+    sudoku/2.txt \
+    sudoku/3.txt \
+    sudoku/4.txt
