@@ -35,10 +35,10 @@ void GameBoard::fillBoard(const size_t &difficulty)
     m_defaultBoard = m_board;
 }
 
-int GameBoard::getValue(const size_t &index)
+QString GameBoard::getValue(const size_t &index)
 {
     size_t x = getX(index), y = getY(index);
-    return static_cast<int>(m_board[x][y]);
+    return (m_board[x][y] == 0 ? "" : QString::number(m_board[x][y]));
 }
 
 void GameBoard::setValue(const size_t &index, const size_t &newValue)
@@ -73,9 +73,9 @@ bool GameBoard::isValueCorrect(const size_t &index)
 
 const QString GameBoard::getColor(const size_t &index)
 {
-    if (!isValueCorrect(index)) return wrongTileColor;
-    if (isValueDefault(index)) return defaultTileColor;
-    return newTileColor;
+    if (!isValueCorrect(index)) return wrongFontColor;
+    if (isValueDefault(index)) return defaultFontColor;
+    return newFontColor;
 }
 
 bool GameBoard::isValueDefault(const size_t &index)
@@ -97,4 +97,23 @@ size_t GameBoard::getY(const size_t &index)
 int GameBoard::getDimensions()
 {
     return static_cast<int>(dimensions);
+}
+
+QString GameBoard::getCursorShape(const size_t &index)
+{
+    if (isValueDefault(index)) return "ArrowCursor";
+    return "PointingHandCursor";
+}
+
+QString GameBoard::getBackgroundColor() {
+    return backgroundColor;
+}
+
+QString GameBoard::getTileColor(const bool &isCurrentTile) {
+    if (isCurrentTile) return currentTileColor;
+    return tileColor;
+}
+
+QString GameBoard::getBorderColor() {
+    return borderColor;
 }

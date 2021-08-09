@@ -1,14 +1,30 @@
 import QtQuick 2.0
 
-Rectangle {
-    property alias internalText: internalText.text
+Item {
+    property int tileIndex
+    property bool isCurrentTile: false
     property alias fontColor: internalText.color
+    property alias value: internalText.text
 
-    anchors.margins: 1
+    Rectangle {
+        anchors.margins: 1
+        anchors.fill: parent
 
-    Text {
-        id: internalText
-        anchors.centerIn: parent
-        font.pointSize: Math.max(10, parent.height/2)
+        color: gameboard.getTileColor(isCurrentTile)
+
+        Text {
+            id: internalText
+            anchors.centerIn: parent
+            font.pointSize: Math.max(10, parent.height/2)
+
+            text: gameboard.getValue(index);
+            color: gameboard.getColor(index)
+        }
+    }
+    BorderBottom {
+        thisIndex: tileIndex
+    }
+    BorderLeft {
+        thisIndex: tileIndex
     }
 }

@@ -13,12 +13,15 @@ class GameBoard : public QObject
 public:
     GameBoard(QObject *parent = nullptr);
 
-    Q_INVOKABLE int getValue(const size_t &index);
+    Q_INVOKABLE QString getCursorShape(const size_t &index);
+    Q_INVOKABLE QString getValue(const size_t &index);
     Q_INVOKABLE const QString getColor(const size_t &index);
     Q_INVOKABLE void setValue(const size_t &index, const size_t &newValue);
-    Q_INVOKABLE bool isValueCorrect(const size_t &index);
     Q_INVOKABLE bool isValueDefault(const size_t &index);
     Q_INVOKABLE int getDimensions();
+    Q_INVOKABLE QString getTileColor(const bool &isCurrentTile);
+    Q_INVOKABLE QString getBackgroundColor();
+    Q_INVOKABLE QString getBorderColor();
 
 private:
     std::vector<std::vector<size_t>> m_board;
@@ -27,13 +30,18 @@ private:
     static constexpr size_t dimensions = 9;
     static constexpr size_t baseDifficulty = 3;
 
-    const QString wrongTileColor = "red";
-    const QString defaultTileColor = "black";
-    const QString newTileColor = "#808080";
+    const QString wrongFontColor = "red";
+    const QString defaultFontColor = "black";
+    const QString newFontColor = "#808080";
+    const QString tileColor = "white";
+    const QString currentTileColor = "#e8e8e8";
+    const QString backgroundColor = "#f5f5f5";
+    const QString borderColor = "#a1a1a1";
 
     void fillBoard(const size_t &difficulty);
     size_t getX(const size_t &index);
     size_t getY(const size_t &index);
+    bool isValueCorrect(const size_t &index);
 };
 
 #endif // GAMEBOARD_H

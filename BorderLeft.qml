@@ -4,13 +4,11 @@ Rectangle {
     property int thisIndex
 
     width: {
-        var y = thisIndex%9;
-        if (y == 2 || y == 5) {
-            return 1
-        }
+        var y = thisIndex%gameboard.getDimensions();
+        if (y == 2 || y == 5) return 1
         return 0
     }
-    color: "#a1a1a1"
+    color: gameboard.getBorderColor()
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     anchors.right: parent.right
