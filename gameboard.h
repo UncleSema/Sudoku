@@ -13,15 +13,15 @@ class GameBoard : public QObject
 public:
     GameBoard(QObject *parent = nullptr);
 
-    Q_INVOKABLE QString getCursorShape(const size_t &index);
-    Q_INVOKABLE QString getValue(const size_t &index);
-    Q_INVOKABLE const QString getColor(const size_t &index);
     Q_INVOKABLE void setValue(const size_t &index, const size_t &newValue);
     Q_INVOKABLE bool isValueDefault(const size_t &index);
     Q_INVOKABLE int getDimensions();
-    Q_INVOKABLE QString getTileColor(const bool &isCurrentTile);
-    Q_INVOKABLE QString getBackgroundColor();
-    Q_INVOKABLE QString getBorderColor();
+    Q_INVOKABLE const QString getTileColor(const bool &isCurrentTile);
+    Q_INVOKABLE const QString getBackgroundColor();
+    Q_INVOKABLE const QString getBorderColor();
+    Q_INVOKABLE const QString getCursorShape(const size_t &index);
+    Q_INVOKABLE const QString getValue(const size_t &index);
+    Q_INVOKABLE const QString getColor(const size_t &index);
 
 private:
     std::vector<std::vector<size_t>> m_board;
